@@ -3,10 +3,10 @@ const buttonValues = [
     "7", "8", "9", "×",
     "4", "5", "6", "-",
     "1", "2", "3", "+",
-    "0", ".", "="
+    "0", "CE", ".", "="
 ];
 const rightSymbols = ["÷", "×", "-", "+", "="];
-const topSymbols = ["AC", "+/-", "%"];
+const topSymbols = ["AC", "+/-", "%", "CE"];
 
 const display = document.getElementById("display");
 
@@ -21,6 +21,10 @@ function clearAll() {
     b = null;
 }
 
+function clearEntry() {
+    display.value = "";
+}
+
 
 // Loop through each value in the lis
 // I = index
@@ -30,10 +34,10 @@ for (let i=0; i<buttonValues.length; i++) {
     button.innerText = value;
 
     //check is the button is 0 to span it over 2 buttions to make the spacing better
-    if(value == "0") {
-        button.style.width = "200px"
-        button.style.gridColumn = "span 2";
-    }
+    // if(value == "0") {
+    //     button.style.width = "200px"
+    //     button.style.gridColumn = "span 2";
+    // }
 
     //Checking if for right and top buttons as they are differnt colors
     if(rightSymbols.includes(value)) {
@@ -99,6 +103,9 @@ for (let i=0; i<buttonValues.length; i++) {
             else if (value == "%") {
                 display.value = display.value/100;
 
+            }
+            else if (value == "CE"){
+                clearEntry();
             }
         }
         else { // else all the other items like numbers and decimal place
